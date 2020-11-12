@@ -17,3 +17,12 @@ tasking3:改
 
 tasking：查
     商品列表上方加入search部分，通过商品名称进行检索
+
+预计使用的zorro-antd：
+（1）AutoComplete/input ----用于搜索关键字
+（2）Form               ----用于新增/修改商品条目
+（3）Model/Popconfirm   ----用于删除条目时弹出对话框
+（4）Notifacation       ----用于修改成功后弹出提示
+（5）Backtop            ----用于返回页面最上
+（6）Pagination         ----用于条目分页
+（7）Table              ----表格+分页
