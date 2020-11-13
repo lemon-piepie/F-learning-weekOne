@@ -13,6 +13,8 @@ import zh from '@angular/common/locales/zh';
 import { HeaderComponent } from './components/header/header.component';
 import { GoodsListComponent } from './components/goods-list/goods-list.component';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NewGoodsFormComponent } from './components/new-goods-form/new-goods-form.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 registerLocaleData(zh);
 
@@ -21,6 +23,7 @@ registerLocaleData(zh);
     AppComponent,
     GoodsListComponent,
     HeaderComponent,
+    NewGoodsFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +31,8 @@ registerLocaleData(zh);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NzTableModule
+    NzTableModule,
+    NzFormModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
