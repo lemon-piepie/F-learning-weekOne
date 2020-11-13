@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GoodsItemComponent } from './components/goods-item/goods-item.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,21 +11,24 @@ import { zh_CN } from 'ng-zorro-antd/i18n';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
 import { HeaderComponent } from './components/header/header.component';
+import { GoodsListComponent } from './components/goods-list/goods-list.component';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
     AppComponent,
-    GoodsItemComponent,
-    HeaderComponent
+    GoodsListComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NzTableModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
