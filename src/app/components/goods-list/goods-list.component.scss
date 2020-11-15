@@ -44,18 +44,22 @@
     .searchBox {
         height: 20px;
         line-height: 20px;
-        margin-bottom: 15px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
 
         input {
+            display: inline-block;
             height: 20px;
             line-height: 20px;
+            border: none;
         }
 
         svg {
             height: 20px;
-            width: 20px;
+            width: 30px;
             padding-left: 5px;
-            margin-bottom: -2px;
             &:hover{
                 cursor: pointer;
             }
