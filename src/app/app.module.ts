@@ -16,9 +16,6 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NewGoodsFormComponent } from './components/new-goods-form/new-goods-form.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 
-import {DataTransformService} from './service/data-transform.service'
-import { from } from 'rxjs';
-
 registerLocaleData(zh);
 
 @NgModule({
@@ -26,7 +23,7 @@ registerLocaleData(zh);
     AppComponent,
     GoodsListComponent,
     HeaderComponent,
-    NewGoodsFormComponent,
+    NewGoodsFormComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +34,7 @@ registerLocaleData(zh);
     NzTableModule,
     NzFormModule
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN },DataTransformService],
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
