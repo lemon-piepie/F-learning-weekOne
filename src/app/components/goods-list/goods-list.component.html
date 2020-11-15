@@ -1,5 +1,5 @@
 <div class="main">
-    <nz-table #goodsList [nzData]="listOfData" [nzPageSize]="2">
+    <nz-table #goodsList [nzData]="listOfGoodsData" [nzPageSize]="2">
         <thead>
             <tr>
               <th></th>
@@ -10,9 +10,9 @@
             </tr>
           </thead>
         <tbody>
-          <tr *ngFor="let data of goodsList.data;let key = index">
+          <tr *ngFor="let data of goodsList.data">
             <td>
-                <img src="{{data.imgUrl}}">
+                <img src="{{data.url}}">
             </td>
             <td>
                 {{data.name}}
