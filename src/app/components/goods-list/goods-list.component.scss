@@ -1,3 +1,36 @@
+.hideForm {
+    display: none;
+}
+
+.updateForm {
+    width: 400px;
+    margin: 10px auto;
+
+    .goodsIdInput {
+        line-height: 32px;
+    }
+
+    .ableButton {
+        width: 80px;
+        height: 40px;
+        border: none;
+        margin-left: 10px;
+        background-color: darkblue;
+        color: white;
+        cursor: pointer;
+    }
+
+    .disabledButton {
+        width: 80px;
+        height: 40px;
+        border: none;
+        margin-left: 10px;
+        background-color: darkgrey;
+        color: white;
+        cursor: not-allowed;
+    }
+}
+
 .main {
     margin-left: 40px;
     margin-right: 40px;

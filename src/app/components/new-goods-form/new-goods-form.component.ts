@@ -34,7 +34,6 @@ export class NewGoodsFormComponent implements OnInit {
       unitPrice: ['', [Validators.required]],
       imgUrl: ['']
     });
-    console.log(this.validateForm.valid);
   }
 
   createNewGoodsItem (newGoodsItem) {
@@ -43,7 +42,7 @@ export class NewGoodsFormComponent implements OnInit {
     };
     var url = "http://localhost:8080/goodsItem"; 
     this.http.post(url,newGoodsItem,httpOptions).subscribe(response => {
-      console.log(response); 
+
     });
   }
 
