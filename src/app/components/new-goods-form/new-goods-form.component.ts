@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
+import { ApiToBackService } from 'src/app/services/api-to-back.service';
 
 @Component({
   selector: 'app-new-goods-form',
@@ -10,12 +11,21 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 export class NewGoodsFormComponent implements OnInit {
   validateForm: FormGroup;
 
+  constructor( private formBuilder: FormBuilder ,public service: ApiToBackService) {
+    this.validateForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      shop: ['', [Validators.required]],
+      unitPrice: ['', [Validators.required]],
+      imgUrl: ['']
+    });
+  }
+
   submitForm(value: { name: string; shop: string; unitPrice: number; imgUrl: string }): void {
     for (const key in this.validateForm.controls) {
       this.validateForm.controls[key].markAsDirty();
       this.validateForm.controls[key].updateValueAndValidity();
     }
-    this.createNewGoodsItem(value);
+    this.service.createNewGoodsItem(value);
   }
 
   resetForm(e: MouseEvent): void {
@@ -25,25 +35,6 @@ export class NewGoodsFormComponent implements OnInit {
       this.validateForm.controls[key].markAsPristine();
       this.validateForm.controls[key].updateValueAndValidity();
     }
-  }
-
-  constructor( private fb: FormBuilder , public http: HttpClient ) {
-    this.validateForm = this.fb.group({
-      name: ['', [Validators.required]],
-      shop: ['', [Validators.required]],
-      unitPrice: ['', [Validators.required]],
-      imgUrl: ['']
-    });
-  }
-
-  createNewGoodsItem (newGoodsItem) {
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
-    var url = "http://localhost:8080/goodsItem"; 
-    this.http.post(url,newGoodsItem,httpOptions).subscribe(response => {
-
-    });
   }
 
   ngOnInit(): void {

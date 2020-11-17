@@ -3,28 +3,28 @@
         <nz-form-item>
             <nz-form-label [nzSpan]="5" nzRequired nzFor="name">商品名称</nz-form-label>
             <nz-form-control [nzSpan]="12" nzErrorTip="商品名称不能为空">
-                <input nz-input [ngModel]="" formControlName="name" name="name" placeholder="请输入要添加的商品名称" required />
+                <input nz-input formControlName="name" name="name" placeholder="请输入要添加的商品名称" required />
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
             <nz-form-label [nzSpan]="5" nzRequired nzFor="shop">商家名称</nz-form-label>
             <nz-form-control [nzSpan]="12" nzErrorTip="商家名称不能为空">
-                <input nz-input [ngModel]="" formControlName="shop" name="shop" placeholder="请输入要添加商品的商家名称" required />
+                <input nz-input formControlName="shop" name="shop" placeholder="请输入要添加商品的商家名称" required />
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
             <nz-form-label [nzSpan]="5" nzRequired nzFor="unitPrice">商品单价</nz-form-label>
             <nz-form-control [nzSpan]="12" nzErrorTip="商品单价不能为空">
-                <input nz-input [ngModel]="" name="unitPrice" formControlName="unitPrice" placeholder="请输入要添加商品的单价" required maxlength="5"/>
+                <input nz-input name="unitPrice" formControlName="unitPrice" placeholder="请输入要添加商品的单价" required maxlength="5"/>
             </nz-form-control>
         </nz-form-item>
 
         <nz-form-item>
             <nz-form-label [nzSpan]="5" nzFor="imgUrl">商品图片</nz-form-label>
             <nz-form-control nzHasFeedback [nzSpan]="12" nzErrorTip="商品的图片链接地址不合法">
-                <input nz-input [ngModel]="" name="imgUrl" formControlName="imgUrl" placeholder="请输入要添加商品的图片链接" pattern="(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?" />
+                <input nz-input name="imgUrl" formControlName="imgUrl" placeholder="请输入要添加商品的图片链接" pattern="(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&:/~\+#]*[\w\-\@?^=%&/~\+#])?" />
             </nz-form-control>
         </nz-form-item>
         

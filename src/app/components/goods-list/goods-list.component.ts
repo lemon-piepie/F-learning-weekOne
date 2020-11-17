@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ApiToBackService } from 'src/app/services/api-to-back.service';
 
 interface GoodsItem {
   id: number;
@@ -24,14 +25,22 @@ export class GoodsListComponent implements OnInit {
   updateTargetGoods: GoodsItem;
   targetGoodsId : number;
 
+  constructor( private formBuilder: FormBuilder , public http: HttpClient, public service: ApiToBackService ) {
+    this.validateForm = this.formBuilder.group({
+      id: [''],
+      name: ['', [Validators.required]],
+      shop: ['', [Validators.required]],
+      unitPrice: ['', [Validators.required]],
+      imgUrl: ['']
+    });
+    this.getGoodsListInfo();
+  }
+
   submitForm(value: { name: string; shop: string; unitPrice: number; imgUrl: string }): void {
     for (const key in this.validateForm.controls) {
       this.validateForm.controls[key].markAsDirty();
       this.validateForm.controls[key].updateValueAndValidity();
     }
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    };
     const UpdateInfo: GoodsItem = {
       'id': this.targetGoodsId,
       'name': value.name,
@@ -39,70 +48,34 @@ export class GoodsListComponent implements OnInit {
       'unitPrice': value.unitPrice,
       'url': value.imgUrl
     }
-    var url = "/goodsItem"; 
-    this.http.patch(url,UpdateInfo,httpOptions).subscribe(response => {
-    });
+    this.service.updateGoodsItem(UpdateInfo);
     alert("修改商品成功");
-    location.reload();
+    this.updateGoodsFlag = false;
+    this.getGoodsListInfo();
   }
 
-  resetForm(e: MouseEvent): void {
-    e.preventDefault();
-    this.validateForm.reset();
-    for (const key in this.validateForm.controls) {
-      this.validateForm.controls[key].markAsPristine();
-      this.validateForm.controls[key].updateValueAndValidity();
-    }
+  getGoodsListInfo () {
+    let rxjsGoodsListData : any = this.service.getGoodsListInfo(this.searchInfo);
+    rxjsGoodsListData.subscribe((data) => {
+      this.listOfGoodsData = data;
+    })
   }
 
-  constructor( private fb: FormBuilder , public http: HttpClient ) {
-    this.validateForm = this.fb.group({
-      id: [''],
-      name: ['', [Validators.required]],
-      shop: ['', [Validators.required]],
-      unitPrice: ['', [Validators.required]],
-      imgUrl: ['']
-    });
-    this.getData();
+  search () {
+    let searchWord :any = document.getElementById('searchInfo');
+    this.searchInfo = searchWord.value;
+    this.getGoodsListInfo();
   }
-
 
   ngOnInit(): void {
 
   }
 
-  getData () {
-    let getDataUrl : string;
-    if(this.searchInfo != undefined) {
-      getDataUrl = "/goodsItem?name="+this.searchInfo;
-    } else {
-      getDataUrl = "/goodsItem";
-    }
-    this.http.get(getDataUrl).subscribe( (response : any) => {
-      this.listOfGoodsData = response;
-    })
-  }
-
   deleteGoods (event) {
-    let deleteUrl = "/goodsItem/"+event.target.id;
-    this.http.delete(deleteUrl).subscribe ( (response) => {
-
-    })
-    if(event.target.id) {
+    if(event.target.id){
+      this.service.deleteGoods(event);
       alert("删除商品成功！");
-      location.reload();
-    }
-  }
-
-  search () {
-    let searchWord:any = document.getElementById('searchInfo');
-    this.searchInfo = searchWord.value;
-    this.getData();
-  }
-
-  searchWithEnter (event) {
-    if(event.keyCode == 13) {
-      this.search();
+      this.getGoodsListInfo();
     }
   }
 
