@@ -39,7 +39,7 @@ export class GoodsListComponent implements OnInit {
       'unitPrice': value.unitPrice,
       'url': value.imgUrl
     }
-    var url = "http://localhost:8080/goodsItem"; 
+    var url = "/goodsItem"; 
     this.http.patch(url,UpdateInfo,httpOptions).subscribe(response => {
     });
     alert("修改商品成功");
@@ -74,9 +74,9 @@ export class GoodsListComponent implements OnInit {
   getData () {
     let getDataUrl : string;
     if(this.searchInfo != undefined) {
-      getDataUrl = "http://localhost:8080/goodsItem?name="+this.searchInfo;
+      getDataUrl = "/goodsItem?name="+this.searchInfo;
     } else {
-      getDataUrl = "http://localhost:8080/goodsItem";
+      getDataUrl = "/goodsItem";
     }
     this.http.get(getDataUrl).subscribe( (response : any) => {
       this.listOfGoodsData = response;
@@ -84,13 +84,14 @@ export class GoodsListComponent implements OnInit {
   }
 
   deleteGoods (event) {
-    //event.target.id
-    let deleteUrl = "http://localhost:8080/goodsItem/"+event.target.id;
+    let deleteUrl = "/goodsItem/"+event.target.id;
     this.http.delete(deleteUrl).subscribe ( (response) => {
 
     })
-    alert("删除商品成功！");
-    location.reload();
+    if(event.target.id) {
+      alert("删除商品成功！");
+      location.reload();
+    }
   }
 
   search () {
