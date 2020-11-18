@@ -15,8 +15,7 @@ export class NewGoodsFormComponent implements OnInit {
     this.validateForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       shop: ['', [Validators.required]],
-      unitPrice: ['', [Validators.required]],
-      imgUrl: ['']
+      unitPrice: ['', [Validators.required]]
     });
   }
 
@@ -28,8 +27,8 @@ export class NewGoodsFormComponent implements OnInit {
     this.service.createNewGoodsItem(value);
   }
 
-  resetForm(e: MouseEvent): void {
-    e.preventDefault();
+  resetForm(event: MouseEvent): void {
+    event.preventDefault();
     this.validateForm.reset();
     for (const key in this.validateForm.controls) {
       this.validateForm.controls[key].markAsPristine();
