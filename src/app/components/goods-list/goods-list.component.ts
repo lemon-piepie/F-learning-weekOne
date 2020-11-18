@@ -19,7 +19,7 @@ interface GoodsItem {
 export class GoodsListComponent implements OnInit {
 
   listOfGoodsData: GoodsItem[] = [];
-  public searchInfo : string ;
+  searchInfo : string ;
   updateGoodsFlag : boolean = false;  
   validateForm: FormGroup;
   updateTargetGoods: GoodsItem;
@@ -27,6 +27,7 @@ export class GoodsListComponent implements OnInit {
 
   constructor( private formBuilder: FormBuilder , public http: HttpClient, public service: ApiToBackService ) {
     this.validateForm = this.formBuilder.group({
+      id: [''],
       name: ['', [Validators.required]],
       shop: ['', [Validators.required]],
       unitPrice: ['', [Validators.required]],
@@ -60,12 +61,6 @@ export class GoodsListComponent implements OnInit {
     })
   }
 
-  search () {
-    let searchWord :any = document.getElementById('searchInfo');
-    this.searchInfo = searchWord.value;
-    this.getGoodsListInfo();
-  }
-
   ngOnInit(): void {
 
   }
@@ -79,8 +74,6 @@ export class GoodsListComponent implements OnInit {
   }
 
   updateGoods (event) {
-    let goodsIdSpan : any = document.getElementById("goodsIdInput")
-    goodsIdSpan.innerHTML = event.target.id;
     this.updateGoodsFlag = true;
     this.targetGoodsId = event.target.id;
   }
