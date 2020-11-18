@@ -29,7 +29,8 @@ export class GoodsListComponent implements OnInit {
     this.validateForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       shop: ['', [Validators.required]],
-      unitPrice: ['', [Validators.required]]
+      unitPrice: ['', [Validators.required]],
+      imgUrl: ['']
     });
     this.getGoodsListInfo();
   }
