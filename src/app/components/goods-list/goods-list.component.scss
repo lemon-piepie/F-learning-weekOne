@@ -1,12 +1,12 @@
-.hideForm {
+.hidden-update-form {
     display: none;
 }
 
-.updateForm {
+.update-form {
     width: 500px;
     margin: 10px auto;
 
-    .ableButton {
+    .button-able {
         width: 80px;
         height: 40px;
         border: none;
@@ -16,7 +16,7 @@
         cursor: pointer;
     }
 
-    .disabledButton {
+    .button-disable {
         width: 80px;
         height: 40px;
         border: none;
@@ -70,7 +70,7 @@
         }
     }   
 
-    .searchBox {
+    .main-search {
         height: 20px;
         line-height: 20px;
         margin-bottom: 20px;

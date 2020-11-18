@@ -30,8 +30,8 @@
         
         <nz-form-item>
             <nz-form-control [nzOffset]="7" [nzSpan]="12">
-              <button nz-button nzType="primary" [disabled]="!validateForm.valid" [ngClass]="{'ableButton': validateForm.valid, 'disabledButton':!validateForm.valid}">Submit</button>
-              <button nz-button (click)="resetForm($event)" class="ableButton">Reset</button>
+              <button nz-button nzType="primary" [disabled]="!validateForm.valid" [ngClass]="{'button-albe': validateForm.valid, 'button-disalbe':!validateForm.valid}">Submit</button>
+              <button nz-button (click)="resetForm($event)" class="button-albe">Reset</button>
             </nz-form-control>
           </nz-form-item>
     </form>
