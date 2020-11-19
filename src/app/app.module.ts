@@ -16,6 +16,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NewGoodsFormComponent } from './components/new-goods-form/new-goods-form.component';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { ApiToBackService } from '../app/services/api-to-back.service';
+import { GoodsItemComponent } from './components/goods-item/goods-item.component';
 
 registerLocaleData(zh);
 
@@ -24,7 +25,8 @@ registerLocaleData(zh);
     AppComponent,
     GoodsListComponent,
     HeaderComponent,
-    NewGoodsFormComponent
+    NewGoodsFormComponent,
+    GoodsItemComponent
   ],
   imports: [
     BrowserModule,

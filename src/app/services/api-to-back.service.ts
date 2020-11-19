@@ -49,6 +49,16 @@ export class ApiToBackService {
     })
   }
 
+  getGoodsItem (id) {
+    return new Observable((observer) => {
+      let dataUrl : string;
+      dataUrl = "/goodsItem/" + id;
+      this.http.get(dataUrl).subscribe((response) => {
+        observer.next(response);
+      })
+    })
+  }
+
   updateGoodsItem (updateInfo) {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
