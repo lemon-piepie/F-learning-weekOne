@@ -1,15 +1,30 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './components/header/header.component';
+import { GoodsListComponent } from './components/goods-list/goods-list.component';
+import { GoodsItemComponent } from './components/goods-item/goods-item.component';
+import { NewGoodsFormComponent } from './components/new-goods-form/new-goods-form.component';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        NzFormModule,
+        NzTableModule,
+        FormsModule,
+        ReactiveFormsModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        HeaderComponent,
+        GoodsListComponent,
+        GoodsItemComponent,
+        NewGoodsFormComponent
       ],
     }).compileComponents();
   });
@@ -26,10 +41,4 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('shopping-web');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('shopping-web app is running!');
-  });
 });
