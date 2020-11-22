@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiToBackService } from 'src/app/services/api-to-back.service';
+import { ActivatedRoute } from '@angular/router';
 
 interface GoodsItem {
   id: number;
@@ -17,12 +18,16 @@ interface GoodsItem {
 export class GoodsItemComponent implements OnInit {
 
   goodsItemDetail : GoodsItem;
+  goodsId : string;
 
-  constructor(public service: ApiToBackService) {
-    this.getGoodsItemDetailById(1);
+  constructor(public service: ApiToBackService, public route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe((id) => {
+      this.goodsId = id.aid;
+    })
+    this.getGoodsItemDetailById(this.goodsId);
   }
 
   getGoodsItemDetailById (id) {

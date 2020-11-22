@@ -59,7 +59,7 @@
         <tbody>
           <tr *ngFor="let goodsItemInfo of goodsList.data">
             <td>
-                <img src="{{goodsItemInfo.url}}">
+                <img src="{{goodsItemInfo.url}}" [routerLink]="[ '/detail' ]" [queryParams]="{aid:goodsItemInfo.id}">
             </td>
             <td>
                 {{goodsItemInfo.name}}
