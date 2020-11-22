@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
-import { observable, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { HttpClientModule } from '@angular/common/http';
+import * as _ from 'lodash';
 
 interface GoodsItem {
   id: number;
@@ -11,9 +13,11 @@ interface GoodsItem {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: HttpClientModule
 })
 export class ApiToBackService {
+
+  url : string;
 
   constructor(public http: HttpClient) { }
 
@@ -21,29 +25,28 @@ export class ApiToBackService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    var url = "/goodsItem"; 
-    this.http.post(url,newGoodsItem,httpOptions).subscribe((response) => {
-
+    this.url = "/goodsItem"; 
+    this.http.post(this.url,newGoodsItem,httpOptions).subscribe((response) => {
+      return response;
     });
   }
 
   deleteGoods (event) {
-    let deleteUrl = "/goodsItem/" + event.target.id;
+    this.url = "/goodsItem/" + event.target.id;
 
-    this.http.delete(deleteUrl).subscribe ((response) => {
+    this.http.delete(this.url).subscribe ((response) => {
 
     })
   }
 
   getGoodsListInfo (searchInfo) {
     return new Observable((observer) => {
-      let dataUrl : string;
-      if(searchInfo !== undefined) {
-        dataUrl = "/goodsItem?name=" + searchInfo;
+      if(_.isUndefined(searchInfo)) {
+        this.url = "/goodsItem";
       } else {
-        dataUrl = "/goodsItem";
+        this.url = "/goodsItem?name=" + searchInfo;
       }
-      this.http.get(dataUrl).subscribe((response) => {
+      this.http.get(this.url).subscribe((response) => {
         observer.next(response);
       })
     })
@@ -51,9 +54,8 @@ export class ApiToBackService {
 
   getGoodsItem (id) {
     return new Observable((observer) => {
-      let dataUrl : string;
-      dataUrl = "/goodsItem/" + id;
-      this.http.get(dataUrl).subscribe((response) => {
+      this.url = "/goodsItem/" + id;
+      this.http.get(this.url).subscribe((response) => {
         observer.next(response);
       })
     })
@@ -63,8 +65,8 @@ export class ApiToBackService {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    var url = "/goodsItem"; 
-    this.http.patch(url,updateInfo,httpOptions).subscribe(response => {
+    this.url = "/goodsItem"; 
+    this.http.patch(this.url,updateInfo,httpOptions).subscribe(response => {
     });
   }
 }
