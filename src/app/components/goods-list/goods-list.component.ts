@@ -31,12 +31,12 @@ export class GoodsListComponent implements OnInit {
       name: ['', [Validators.required]],
       shop: ['', [Validators.required]],
       unitPrice: ['', [Validators.required]],
-      imgUrl: ['']
+      url: ['']
     });
     this.getGoodsListInfo();
   }
 
-  submitForm(value: { name: string; shop: string; unitPrice: number; imgUrl: string }): void {
+  submitForm(value: { name: string; shop: string; unitPrice: number; url: string }): void {
     for (const key in this.validateForm.controls) {
       this.validateForm.controls[key].markAsDirty();
       this.validateForm.controls[key].updateValueAndValidity();
@@ -46,7 +46,7 @@ export class GoodsListComponent implements OnInit {
       'name': value.name,
       'shop': value.shop,
       'unitPrice': value.unitPrice,
-      'url': value.imgUrl
+      'url': value.url
     }
     this.service.updateGoodsItem(UpdateInfo);
     alert("修改商品成功");

@@ -13,7 +13,7 @@ interface GoodsItem {
 }
 
 @Injectable({
-  providedIn: HttpClientModule
+  providedIn: 'root'
 })
 export class ApiToBackService {
 

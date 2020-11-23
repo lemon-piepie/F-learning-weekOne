@@ -9,25 +9,22 @@ interface GoodsItem {
   url: string;
   unitPrice: number;
 }
-
 @Component({
-  selector: 'app-goods-item',
-  templateUrl: './goods-item.component.html',
-  styleUrls: ['./goods-item.component.scss']
+  selector: 'app-goods',
+  templateUrl: './goods.component.html',
+  styleUrls: ['./goods.component.scss']
 })
-export class GoodsItemComponent implements OnInit {
+export class GoodsComponent implements OnInit {
 
   goodsItemDetail : GoodsItem;
   goodsId : string;
-
-  constructor(public service: ApiToBackService, public route: ActivatedRoute) {
-  }
+  constructor(public service: ApiToBackService) { }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((id) => {
-      this.goodsId = id.aid;
-    })
-    this.getGoodsItemDetailById(this.goodsId);
+    // this.route.queryParams.subscribe((id) => {
+    //   this.goodsId = id.aid;
+    // })
+    // this.getGoodsItemDetailById(this.goodsId);
   }
 
   getGoodsItemDetailById (id) {
@@ -36,5 +33,4 @@ export class GoodsItemComponent implements OnInit {
     //   this.goodsItemDetail = data;
     // })
   }
-
 }

@@ -18,6 +18,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { ApiToBackService } from '../app/services/api-to-back.service';
 import { GoodsItemComponent } from './components/goods-item/goods-item.component';
 
+
 registerLocaleData(zh);
 
 @NgModule({
@@ -26,7 +27,8 @@ registerLocaleData(zh);
     GoodsListComponent,
     HeaderComponent,
     NewGoodsFormComponent,
-    GoodsItemComponent
+    GoodsItemComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,7 @@ registerLocaleData(zh);
     HttpClientModule,
     BrowserAnimationsModule,
     NzTableModule,
-    NzFormModule
+    NzFormModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }, ApiToBackService],
   bootstrap: [AppComponent],

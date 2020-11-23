@@ -16,11 +16,11 @@ export class NewGoodsFormComponent implements OnInit {
       name: ['', [Validators.required]],
       shop: ['', [Validators.required]],
       unitPrice: ['', [Validators.required]],
-      imgUrl: ['']
+      url: ['']
     });
   }
 
-  submitForm(value: { name: string; shop: string; unitPrice: number; imgUrl: string }): void {
+  submitForm(value: { name: string; shop: string; unitPrice: number; url: string }): void {
     for (const key in this.validateForm.controls) {
       this.validateForm.controls[key].markAsDirty();
       this.validateForm.controls[key].updateValueAndValidity();
